@@ -2,27 +2,23 @@ function solve() {
     const convertoption = document.getElementById("selectMenuTo");
     const [button] = document.getElementsByTagName("button");
 
-    const option1 = document.createElement("option");
-    const option2 = document.createElement("option");
+    const options = {
+        "binary": {text: "Binary", operation: (number) => number.toString(2)},
+        "hexadecimal": {text: "Hexadecimal", operation: (number) => number.toString(16).toUpperCase()},
+    }; 
 
-    option1.value = "binary";
-    option1.text = "Binary";
-
-    option2.value = "hexadecimal";
-    option2.text = "Hexadecimal";
-
-    convertoption.add(option1, null);
-    convertoption.add(option2, null);
+    Object.entries(options).forEach(([optionValue, optionInfo]) => {
+        const optionElement = document.createElement("option");
+        optionElement.text = optionInfo.text;
+        optionElement.value = optionValue;
+        convertoption.add(optionElement, null);
+    });
 
     button.addEventListener("click", onClick);
 
     function onClick() {
         const number = Number(document.getElementById("input").value);
-        const opation = document.getElementById("selectMenuTo").value;
-        if (opation === "hexadecimal") {
-            document.getElementById("result").value = number.toString(16).toUpperCase();
-        } else {
-            document.getElementById("result").value = number.toString(2);
-        }
+        const operation = document.getElementById("selectMenuTo").value;
+        document.getElementById("result").value = options[operation].operation(number);
     }
 }
