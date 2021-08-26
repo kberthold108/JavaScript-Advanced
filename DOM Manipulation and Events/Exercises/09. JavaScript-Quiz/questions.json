@@ -1,0 +1,6 @@
+{
+    "0": {
+        "rightAnswer": "something",
+        "wrongAnswers": ["..", "...", "..."]
+    } 
+}

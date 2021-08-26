@@ -15,7 +15,7 @@ function attachEventsListeners() {
         const div = event.target.parentNode;
         const input = div.querySelector("[type='text']");
         const converted = convert[input.id](input.value);
-
+        
         inputAll.forEach(val => {
             val.value = converted[val.id];
         });
